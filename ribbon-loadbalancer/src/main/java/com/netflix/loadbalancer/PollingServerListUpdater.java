@@ -62,6 +62,10 @@ public class PollingServerListUpdater implements ServerListUpdater {
         this.refreshIntervalMs = refreshIntervalMs;
     }
 
+    /**
+     * TODO:执行updateAction行为，封装的公共的调用？
+     * @param updateAction
+     */
     @Override
     public synchronized void start(final UpdateAction updateAction) {
         if (isActive.compareAndSet(false, true)) {

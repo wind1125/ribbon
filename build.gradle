@@ -15,17 +15,23 @@ subprojects {
     group = "com.netflix.${githubProjectName}" // TEMPLATE: Set to organization of project
 
     repositories {
-        mavenCentral()
+        maven {
+            url 'http://maven.aliyun.com/nexus/content/groups/public/'
+        }
     }
 
     if (project.hasProperty('useMavenLocal')) {
         repositories {
-            mavenLocal()
+            maven {
+                url 'http://maven.aliyun.com/nexus/content/groups/public/'
+            }
         }
     }
     if (project.getProperty('status').equals("snapshot")) {
         repositories {
-            maven { url 'https://artifactory-oss.prod.netflix.net/artifactory/maven-oss-snapshots' }
+            maven {
+                url 'http://maven.aliyun.com/nexus/content/groups/public/'
+            }
         }
     }
 }

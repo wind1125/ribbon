@@ -134,10 +134,15 @@ public class DynamicServerListLoadBalancer<T extends Server> extends BaseLoadBal
         }
     }
 
+    /**
+     * 拉取注册表服务器
+     * @param clientConfig
+     */
     void restOfInit(IClientConfig clientConfig) {
         boolean primeConnection = this.isEnablePrimingConnections();
         // turn this off to avoid duplicated asynchronous priming done in BaseLoadBalancer.setServerList()
         this.setEnablePrimingConnections(false);
+        //学习新服务器的能力
         enableAndInitLearnNewServersFeature();
 
         updateListOfServers();
@@ -219,6 +224,7 @@ public class DynamicServerListLoadBalancer<T extends Server> extends BaseLoadBal
      */
     public void enableAndInitLearnNewServersFeature() {
         LOGGER.info("Using serverListUpdater {}", serverListUpdater.getClass().getSimpleName());
+        //传入的updateAction是实际的更新行为
         serverListUpdater.start(updateAction);
     }
 
